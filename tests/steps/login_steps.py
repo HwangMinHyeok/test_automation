@@ -1,7 +1,5 @@
-from pytest_bdd import given, scenarios, when, then
+from pytest_bdd import given, when, then
 from pages.login_page import LoginPage
-
-scenarios("../features/login.feature")
 
 @given("사용자가 로그인 페이지에 있다")
 def given_login_page():

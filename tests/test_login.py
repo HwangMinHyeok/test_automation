@@ -1,4 +1,4 @@
-# from tests.steps import login_steps
-# from pytest_bdd import scenarios
+from pytest_bdd import scenarios
+from tests.steps.login_steps import *
 
-# scenarios("features/login.feature")
+scenarios("features/login.feature")
