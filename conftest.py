@@ -11,10 +11,18 @@ def page():
         context = browser.new_context()
         page = context.new_page()
 
+        block_ads(page)
+
         yield page
         
         context.close()
         browser.close()
+        
+def block_ads(page):
+    page.route("**/*googlesyndication.com/**", lambda route: route.abort())
+    page.route("**/*doubleclick.net/**", lambda route: route.abort())
+    page.route("**/*googleadservices.com/**", lambda route: route.abort())        
+
   
 # URL별 페이지 fixture
 @pytest.fixture
