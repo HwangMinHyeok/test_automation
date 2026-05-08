@@ -7,8 +7,7 @@ def given_login_page():
 
 @when("올바른 계정을 입력하고 로그인한다")
 def valid_login(login_page):
-    page = LoginPage(login_page)
-    page.login("samplemail123@gmail.com", "password")
+    LoginPage(login_page).login("samplemail123@gmail.com", "password")
 
 @then("로그인에 성공한다")
 def login_success(login_page):
@@ -16,8 +15,7 @@ def login_success(login_page):
     
 @when("올바르지 않은 계정을 입력한다")
 def invalid_login(login_page):
-    page = LoginPage(login_page)
-    page.login("invalid@gmail.com", "wrongpassword")
+    LoginPage(login_page).login("invalid@gmail.com", "wrongpassword")
     
 @then("로그인에 실패한다")
 def login_failure(login_page):

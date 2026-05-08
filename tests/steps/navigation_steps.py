@@ -7,8 +7,7 @@ def given_home_page():
 
 @when("로그인 버튼을 클릭한다")
 def click_login_button(home_page):
-    page = HomePage(home_page)
-    page.click_signup_login_button()
+    HomePage(home_page).click_signup_login_button()
     
 @then("로그인 페이지로 이동한다")
 def expect_login_page(home_page):
@@ -16,8 +15,7 @@ def expect_login_page(home_page):
     
 @when("Products 버튼을 클릭한다")
 def click_products_button(home_page):
-    page = HomePage(home_page)
-    page.click_products_button()
+    HomePage(home_page).click_products_button()
     
 @then("Products 페이지로 이동한다")
 def expect_products_page(home_page):
@@ -25,8 +23,7 @@ def expect_products_page(home_page):
     
 @when("Cart 버튼을 클릭한다")
 def click_cart_button(home_page):
-    page = HomePage(home_page)
-    page.click_cart_button()
+    HomePage(home_page).click_cart_button()
 
 @then("Cart 페이지로 이동한다")
 def expect_cart_page(home_page):
