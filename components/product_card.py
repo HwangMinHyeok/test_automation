@@ -1,14 +1,14 @@
 from playwright.sync_api import expect
 
 class ProductCard:
-    def __init__(self, locator):
-        self.locator = locator
+    def __init__(self, page, index: int = 0):
+        self.root = page.locator("div.single-products").nth(index)
     
     
     # properties    
     @property
     def OVERLAY(self):
-        return self.locator.locator(".product-overlay")
+        return self.root.locator(".product-overlay")
     
     @property
     def ADD_TO_CART_BUTTON(self):
@@ -17,7 +17,7 @@ class ProductCard:
     
     # actions
     def hover(self) -> None:
-        self.locator.hover()
+        self.root.hover()
         
     def add_to_cart(self) -> None:
         self.ADD_TO_CART_BUTTON.click()
