@@ -41,6 +41,12 @@ def products_page(page):
     return page
 
 @pytest.fixture
-def cart_page(page):
+def view_cart_page(page):
     page.goto(BASE_URL + "/view_cart")
     return page
+
+
+# shared fixture
+@pytest.fixture
+def shared_data():
+    return {}
