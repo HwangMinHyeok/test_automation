@@ -2,7 +2,7 @@ from pytest_bdd import given, when, then
 from pages.products_page import ProductsPage
 from pages.view_cart_page import ViewCartPage
 
-# Scenario: 단일 상품 카트 추가 확인
+# Scenario: 단일 상품 - 카트에 추가 확인
 @given("사용자가 Products 페이지에 있다")
 def given_products_page():
     pass
@@ -19,14 +19,31 @@ def add_product_to_cart(products_page, shared_data):
     ProductsPage(products_page).add_product_to_cart(index)
     ProductsPage(products_page).CART_MODAL.click_view_cart()
 
-
 @then("카트에 해당 상품이 들어있다")
 def expect_product_in_cart(products_page, shared_data):
-    product_info = shared_data["product"]
-    ViewCartPage(products_page).expect_product_exists(product_info)
+    ViewCartPage(products_page).expect_product_exists(shared_data["product"])
     
 
-# Scenario: 여러 상품 카트 추가 확인
+# Scenario: 단일 상품 - 카트에서 삭제 확인
+@given("카트에 상품이 담겨있다")
+def given_product_in_cart(products_page, shared_data):
+    index = 0
+    
+    ProductsPage(products_page).add_product_to_cart(index)
+    shared_data["product"] = ProductsPage(products_page).product(index).get_product_info()
+
+    ProductsPage(products_page).CART_MODAL.click_view_cart()
+    
+@when("삭제 버튼을 클릭한다")
+def delete_product_from_cart(products_page, shared_data):
+    ViewCartPage(products_page).click_delete_button(shared_data["product"])
+    
+@then("해당 상품이 카트에서 삭제된다")
+def expect_product_deleted_from_cart(products_page, shared_data):
+    ViewCartPage(products_page).expect_product_not_exists(shared_data["product"])
+
+
+# Scenario: 여러 상품 - 카트에 추가 확인
 @given("사용자가 Products 페이지에 있다")
 def given_products_page():
     pass
