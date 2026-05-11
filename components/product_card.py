@@ -4,6 +4,15 @@ class ProductCard:
     def __init__(self, page, index: int = 0):
         self.root = page.locator("div.single-products").nth(index)
     
+    def get_product_info(self):
+        product = self.root.locator("div.productinfo")
+        product_id = product.locator("a").get_attribute("data-product-id")
+        product_name = product.locator("p").inner_text()
+        return {
+            "id": product_id,
+            "name": product_name
+        }
+    
     
     # properties    
     @property
@@ -14,7 +23,7 @@ class ProductCard:
     def ADD_TO_CART_BUTTON(self):
         return self.OVERLAY.locator("a.add-to-cart")
     
-    
+
     # actions
     def hover(self) -> None:
         self.root.hover()
@@ -22,6 +31,7 @@ class ProductCard:
     def add_to_cart(self) -> None:
         self.ADD_TO_CART_BUTTON.click()
         
+    
     
     # expects
     def expect_add_to_cart_visible(self) -> None:
