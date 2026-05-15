@@ -64,7 +64,7 @@ def add_multiple_products_to_cart(products_page, shared_data):
         ProductsPage(products_page).CART_MODAL.click_continue_shopping()
     
     # 상품을 카트에 추가하고 View Cart 버튼 클릭하여 카트 페이지로 이동
-    shared_data["products"].append(ProductsPage(products_page).product(index).get_product_info())
+    shared_data["products"].append(ProductsPage(products_page).product(indices[-1]).get_product_info())
     ProductsPage(products_page).add_product_to_cart(indices[-1])    
     ProductsPage(products_page).CART_MODAL.click_view_cart()
 
