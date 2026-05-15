@@ -1,9 +1,7 @@
 from tests.api.clients.product_api_client import ProductApiClient
 from pages.products_page import ProductsPage
 
-def test_ui_api_product_search_consistency(products_page):
-    keyword = "top" # 임의로 설정
-    
+def test_ui_api_product_search_consistency(products_page, keyword : str = "top"):
     # UI
     ProductsPage(products_page).search_product(keyword)
     ui_ids = ProductsPage(products_page).get_product_ids()
