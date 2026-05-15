@@ -11,6 +11,7 @@ class ViewCartPage(Base):
     
     # actions
     def click_delete_button(self, product_info):
+        self.page.wait_for_url("**/view_cart")
         self.row(product_info["id"]).locator("a.cart_quantity_delete").click()
 
     
